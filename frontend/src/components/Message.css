@@ -1,8 +1,13 @@
+.chat-main-container{
+    max-width: 50%;
+    width: fit-content;
+    word-break: break-all;
+}
+
 .chat-message-container{
     padding: 1em;
     border-radius: 1em;
-    width: fit-content;
-    max-width: 50%;
+    word-break: break-all;
 }
 
 .outgoing-color {

@@ -7,6 +7,7 @@ const Mainpage = (props) => {
 
   const handleClick = () => {
     props.socket.emit("message", `${props.username}: ${input}`);
+    setInput("");
   };
 
   return (
@@ -16,14 +17,24 @@ const Mainpage = (props) => {
           console.log(item.message);
           if (item.username == props.username) {
             return (
-              <div className="message outgoing-message" key={index}>
-                <Message item={item} outgoing={true} />
+              <div className="outgoing-chat-message-container">
+                <div className="outgoing-chat-username-container">
+                  {item.username}
+                </div>
+                <div className="message outgoing-message" key={index}>
+                  <Message item={item} outgoing={true} />
+                </div>
               </div>
             );
           } else {
             return (
-              <div className="message incoming-message" key={index}>
-                <Message item={item} outgoing={false} />
+              <div className="incoming-chat-message-container">
+                <div className="incoming-chat-username-container">
+                  {item.username}
+                </div>
+                <div className="message incoming-message" key={index}>
+                  <Message item={item} outgoing={false} />
+                </div>
               </div>
             );
           }
@@ -31,6 +42,7 @@ const Mainpage = (props) => {
       </div>
       <div className="message-container">
         <input
+          value={input}
           onChange={(e) => setInput(e.target.value)}
           className="message-input"
           placeholder="Enter Message..."
